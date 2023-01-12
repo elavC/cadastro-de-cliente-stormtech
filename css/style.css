@@ -77,6 +77,7 @@ form button {
     width: 16rem;
     border-radius: 6px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .inforPerson {
@@ -91,28 +92,17 @@ form button {
     display: none;
 }
 
-#correct {
-    background: #CAC531;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #90945d, #CAC531);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #a7ac66, #CAC531); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    cursor: pointer;
-
-}
-
 #send {
     background: #53c234a1;  
     background: -webkit-linear-gradient(to left, #06170070, #52c234);
     background: linear-gradient(to left, #06170083, #52c234);
     color: white;
-    cursor: pointer;
 }
 
 #back {
     background: #FF416C;  
     background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
     background: linear-gradient(to right, #FF4B2B, #FF416C);
-    cursor: pointer;
-
 }
 
 .back {
@@ -120,5 +110,9 @@ form button {
 }
 
 .send {
+    display: none;
+}
+
+.noNext {
     display: none;
 }
