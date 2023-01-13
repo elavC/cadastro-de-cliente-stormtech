@@ -7,7 +7,7 @@ const cpf = document.getElementById("cpf").value;
 const phone = document.getElementById("phone").value;
 const email = document.getElementById("email").value;
 
-const cep = document.getElementById("cep");
+const cep = document.getElementById("cep").addEventListener("focusout", pesquisarCep)
 const street = document.getElementById("street");
 const numberHouse = document.getElementById("number");
 const complemment = document.getElementById("complemment");
@@ -22,22 +22,26 @@ const send = document.getElementById("send");
 const back = document.getElementById("back");
 const next = document.getElementById("next");
 
-const dataPerson = {
-    name: person,
-    cpf: cpf,
-    phone: phone,
-    email: email,
-};
 
-const address = {
-    cep: cep,
-    street: street,
-    numberHouse:numberHouse,
-    complemment: complemment,
-    district: district,
-    city: city,
-    state: state,
-};
+
+async function pesquisarCep() {
+    const cep = document.getElementById("cep").value;
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    const data = await fetch(url);
+    const end = await data.json();
+
+    const completeAddress = (end) => {
+        document.getElementById("street").value = end.logradouro;
+        document.getElementById("district").value = end.bairro;
+        document.getElementById("city").value = end.localidade;
+        document.getElementById("state").value = end.uf;
+    }
+
+    completeAddress(end)
+}
+
+
+
 
 
 const nextPageButton = document.getElementById("next");
