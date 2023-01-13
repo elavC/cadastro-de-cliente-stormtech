@@ -22,9 +22,16 @@ const send = document.getElementById("send");
 const back = document.getElementById("back");
 const next = document.getElementById("next");
 
-
+function clearForm() {
+    document.getElementById("street").value = "";
+    document.getElementById("district").value = "";
+    document.getElementById("city").value = "";
+    document.getElementById("state").value = "";
+}
 
 async function pesquisarCep() {
+    clearForm()
+
     const cep = document.getElementById("cep").value;
     const url = `https://viacep.com.br/ws/${cep}/json/`;
     const data = await fetch(url);
@@ -37,15 +44,16 @@ async function pesquisarCep() {
         document.getElementById("state").value = end.uf;
     }
 
-    completeAddress(end)
+    if(end.hasOwnProperty("erro")) {
+        console.log(end);
+        alert("Erro: Cep não encontrado, tente novamente!");
+    } else {
+        completeAddress(end)
+    }
 }
-
-
-
-
-
 const nextPageButton = document.getElementById("next");
 nextPageButton.addEventListener("click", nextPage);
+
 
 function nextPage() {
     if(addressClient.classList.contains("inputAddress") && back.classList.contains("back")) {
